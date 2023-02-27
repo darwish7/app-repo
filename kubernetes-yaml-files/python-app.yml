@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: python-app
+  template:
+    metadata:
+      labels:
+        name: python-app
+    spec:
+      containers:
+      - name: python-app
+        image: gcr.io/zoz-project-375711/python-app:latest
+        env:
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_HOST
+          value: redis
+        - name: ENVIRONMENT
+          value: PROD
+        - name: PORT
+          value: "8000"
+        - name: REDIS_DB
+          value: "0"
+        ports:
+        - containerPort: 80
