@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-app
+  namespace: web
 spec:
   replicas: 3
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: gcr.io/zoz-project-375711/python-app:latest
+        image: ziad/app:v1
         env:
         - name: REDIS_PORT
           value: "6379"
